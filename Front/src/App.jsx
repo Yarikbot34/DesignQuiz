@@ -89,6 +89,7 @@ const STYLE_IMAGES = {
 }
 
 
+
 function Header() {
     const handleLogoClick = () => window.scrollTo({ top: 0, behavior: 'smooth' })
     return (
@@ -254,6 +255,7 @@ function Footer() {
 
 
 function App() {
+    const [isSubmitting, setIsSubmitting] = useState(false)
     const [started, setStarted] = useState(false)
     const [step, setStep] = useState(1)
     const [answers, setAnswers] = useState({})
@@ -355,14 +357,13 @@ function App() {
         return formatted;
     };
 
-    const handleSubmit = async (e) => {
+        const handleSubmit = async (e) => {
         e.preventDefault();
         if (!contactForm.name || !contactForm.phone || !contactForm.agree) {
             alert('Пожалуйста, укажите ваше имя, заполните телефон и дайте согласие на обработку данных.');
             return;
         }
 
-        // Вспомогательная функция для получения utm_source из URL
         const getUtmSource = () => {
             const params = new URLSearchParams(window.location.search);
             return params.get('utm_source') || '';
@@ -381,6 +382,7 @@ function App() {
             utm_source: getUtmSource()
         };
 
+        setIsSubmitting(true); 
         try {
             const response = await fetch('http://localhost:8000/quiz/result', {
                 method: 'POST',
@@ -390,11 +392,12 @@ function App() {
 
             if (!response.ok) throw new Error(`HTTP ${response.status}`);
 
-            // Успешная отправка
             setSuccess(true);
         } catch (err) {
             console.error('Ошибка отправки заявки:', err);
             alert('Не удалось отправить заявку. Попробуйте позже.');
+        } finally {
+            setIsSubmitting(false);
         }
     };
 
@@ -608,7 +611,8 @@ function App() {
 
                                             <div className="quiz-footer" style={{ marginTop: '15px' }}>
                                                 <button type="button" className="btn-nav" onClick={() => setStep(5)}>← НАЗАД</button>
-                                                <button type="submit" className="btn-nav primary" disabled={!isFormValid()}>ПОЛУЧИТЬ КОНСУЛЬТАЦИЮ</button>
+                                                <button type="submit" className="btn-nav primary" disabled={!isFormValid() || isSubmitting}>
+                                                    {isSubmitting ? 'ОТПРАВКА...' : 'ПОЛУЧИТЬ КОНСУЛЬТАЦИЮ'}</button>
                                             </div>
                                         </form>
                                     </>
