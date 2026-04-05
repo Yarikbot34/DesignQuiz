@@ -91,7 +91,7 @@ npm run dev
 
 
 ## Над проектом работали:
-* Ботнарев Ярослав backend https://t.me/@T32768
-* Ергинян Артур backend https://t.me/@Artur_Erg
-* Чуста Александр frontend https://t.me/@cytok1nes1s
-* Богдан Старостенко frontend https://t.me/@bogdan1802s
+* Ботнарев Ярослав backend https://t.me/T32768
+* Ергинян Артур backend https://t.me/Artur_Erg
+* Чуста Александр frontend https://t.me/cytok1nes1s
+* Богдан Старостенко frontend https://t.me/bogdan1802s
