@@ -31,11 +31,13 @@
 * HTML, CSS.
 * Python 3.12+, FastAPI, Uvicorn.
 * Pydantic, SQLAlchemy, aiosmtplib, python-dotenv.
-* SQLite / PostgreSQL / MySQL.
+* PostgreSQL.
 
 
 
 ### Демо
+
+Ссылка на демо-страницу: https://yarikbot34.github.io/DesignQuiz/
 
 Фронтенд доступен локально по адресу: http://localhost:5173
 
@@ -65,17 +67,19 @@ python -m venv .venv
 source .venv/Scripts/activate  # Для Windows: .venv\\Scripts\\activate
 pip install -r requirements.txt
 ```
+
 #### Обязательно создать и заполнить файл .env
 ```
 MAIL_BACK =  Почта для отправки писем
 MAIL_BACK_PASS = Пароль для приложения
 DATABASE_URL = Путь к БД. Например: 'postgresql://primer:12345@localhost:5432/db'
-Запуск бэкенда
 ```
+
 #### Для запуска бэкенда:
 ```
 uvicorn main:app --reload
 ```
+
 ### Фронтенд
 
 #### Установка зависимостей фронтенда
